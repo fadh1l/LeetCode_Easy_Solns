@@ -1,0 +1,15 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        table = {}
+        for word in strs:
+            hcode = 0
+            for char in word:
+                hcode += hash(char)
+            if hcode in table:
+                table[hcode].append(word)
+            else:
+                table[hcode] = [word]
+        ans = []
+        for key in table:
+            ans.append(table[key])
+        return ans
