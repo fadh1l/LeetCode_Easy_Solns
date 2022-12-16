@@ -1,0 +1,27 @@
+class MyQueue:
+     
+    def __init__(self):
+        self.input = []
+        self.output = []
+        self.front = None
+        
+    def push(self, x):
+        if not self.input:
+            self.front = x
+        self.input.append(x)
+    
+    def pop(self):
+        if not self.output:
+            while self.input:
+                self.output.append(self.input.pop())
+        ans = self.output.pop()
+        return ans
+
+    def peek(self):
+        if self.output:
+            return self.output[-1]
+        return self.front
+
+    def empty(self):
+        if not self.input and not self.output:
+            return True
