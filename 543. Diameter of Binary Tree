@@ -1,0 +1,23 @@
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class Solution:
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        # using an array so escape variable scoping problem
+        res = [0]
+        def dfs(root):
+            #by default the diameter of node if empty is -1
+            if not root:
+                return -1
+            
+            left = dfs(root.left)
+            right = dfs(root.right)
+            #2 is added as there are 2 edges contributing to height from root
+            res[0] = max(res[0], left+right+2)
+            # 1 is added as its part of the root
+            return 1 + max(left,right)
+        dfs(root)
+        return res[0]
