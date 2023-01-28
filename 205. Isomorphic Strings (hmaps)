@@ -1,0 +1,17 @@
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        #create 2 hashmaps for string s and string t
+        mapST, mapTS = {}, {}
+        for x,y in zip(s,t):
+            if(
+            #check if x of s is present in mapStoT and if present check if it is mapped to y of t
+                (x in mapST and mapST[x] != y) or
+            #similarly check if y is present in the mapTtoS and if present if it mapped to x of s
+                (y in mapTS and mapTS[y] != x)
+            ):
+            #if they aren't the same it means 2 different mappings are present then return False
+                return False
+            mapST[x] = y
+            mapTS[y] = x
+        #else you are good to go and return true
+        return True
