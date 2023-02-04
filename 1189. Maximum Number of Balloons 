@@ -1,0 +1,8 @@
+class Solution:
+    def maxNumberOfBalloons(self, text: str) -> int:
+        hmaptext = collections.Counter(text)
+        hmapres = collections.Counter('balloon')
+        res = float('inf')
+        for c in 'balloon':
+            res = min(res,hmaptext[c]//hmapres[c])
+        return res
